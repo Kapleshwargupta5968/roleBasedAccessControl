@@ -21,8 +21,13 @@ axiosInstance.interceptors.response.use(
         return response;
     },
     (error) => {
-        if(error?.response?.status === 401 && window.location.pathname !== "/signin" && window.location.pathname !== "/signup") {
-            window.location.replace("/signin");
+        if (
+            error?.response?.status === 401 && 
+            error.config && error.config.url !== "/auth/authUser" &&
+            window.location.pathname !== "/signin" && 
+            window.location.pathname !== "/signup"
+        ) {
+            window.location.replace("/");
         }
         return Promise.reject(error);
     }

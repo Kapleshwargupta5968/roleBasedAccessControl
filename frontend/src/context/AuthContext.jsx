@@ -5,7 +5,7 @@ export const AuthContext = createContext({});
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
     const verifyUser = async () => {
       try {
@@ -20,10 +20,21 @@ export const AuthProvider = ({ children }) => {
     verifyUser();
   }, []);
 
+  const logout = async () => {
+    try{
+      const response = await axiosInstance.post("/auth/logout");
+      // setUser(response?.data);
+      setUser(null);
+      return true;
+    }catch(error){
+      console.log(error);
+    }
+  };
+
   return isLoading && isLoading ? (
     <div className="flex h-screen items-center justify-center">Loading...</div>
   ) : (
-    <AuthContext.Provider value={{ user, setUser, isLoading }}>
+    <AuthContext.Provider value={{ user, setUser, isLoading, logout }}>
       {children}
     </AuthContext.Provider>
   );
