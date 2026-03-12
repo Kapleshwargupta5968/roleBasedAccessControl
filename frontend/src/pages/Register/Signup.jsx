@@ -31,9 +31,9 @@ const Signup = () => {
   };
 
   return (
-    <main className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
+    <main className="min-h-170 flex items-center justify-center bg-gray-100 px-4">
       <section className="w-full max-w-sm">
-        <div className="bg-white shadow-md rounded-lg p-5 border border-gray-100">
+        <div className="bg-white shadow-md p-5 border border-gray-100 rounded-4xl">
           <div className="text-center mb-4">
             <h1 className="text-xl font-semibold text-gray-800">
               Create Account

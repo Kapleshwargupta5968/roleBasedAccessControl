@@ -7,16 +7,23 @@ import {
   VideoCameraOutlined,
 } from '@ant-design/icons';
 import { Button, Layout, Menu, theme } from 'antd';
+import { useAuth } from '../../context/AuthContext';
 const { Header, Sider, Content } = Layout;
 const UserDashboard = () => {
   const [collapsed, setCollapsed] = useState(false);
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
+
+  const {user} = useAuth();
+
   return (
     <Layout>
       <Sider trigger={null} collapsible collapsed={collapsed}>
-        <div className="demo-logo-vertical" />
+        <div className="demo-logo-vertical p-4 text-center text-white font-bold ">
+          <UserOutlined className='text-2xl'/>
+          {!collapsed && <div className='mt-["8px"]'>{user.email}</div>}
+        </div>
         <Menu
           theme="dark"
           mode="inline"

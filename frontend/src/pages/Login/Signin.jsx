@@ -43,7 +43,7 @@ const {setUser} = useAuth();
 
       <section className="w-full max-w-md">
 
-        <div className="bg-white shadow-xl rounded-2xl p-8 border border-gray-100">
+        <div className="bg-white shadow-xl p-8 border border-gray-100 rounded-4xl">
 
           <div className="text-center mb-6">
             <h1 className="text-3xl font-bold text-gray-800">

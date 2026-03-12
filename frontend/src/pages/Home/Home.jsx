@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 
 const Home = () => {
+
+  const {user} = useAuth();
+
   return (
     <div className="bg-gray-50">
 
@@ -26,22 +30,25 @@ const Home = () => {
             >
               Get Started
             </Link>
-
+            {
+              !user && (
             <Link
               to="/signin"
               className="px-6 py-3 border border-gray-300 rounded-lg hover:bg-gray-100 transition"
             >
               Login
             </Link>
+              )
+            }
 
           </div>
         </div>
 
         <div className="flex justify-center">
           <img
-            src="https://illustrations.popsy.co/gray/web-security.svg"
+            src="https://plus.unsplash.com/premium_photo-1677093905889-c60a2db5d5c8?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fGF1dGhlbnRpY2F0aW9ufGVufDB8fDB8fHww"
             alt="authentication"
-            className="w-full max-w-md"
+            className="w-full max-w-md rounded-4xl"
           />
         </div>
 

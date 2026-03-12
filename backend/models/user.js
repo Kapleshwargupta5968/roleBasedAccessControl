@@ -22,10 +22,6 @@ const userSchema = new mongoose.Schema({
         enum: ["Admin", "User"],
         default: "User"
     },
-    subscribedPlots: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Plot"
-    }],
     refreshToken: {
         type: String
     },

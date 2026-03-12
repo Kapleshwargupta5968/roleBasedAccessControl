@@ -1,7 +1,7 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 const Header = () => {
-  const { user, logout } = useAuth();
+  const { user, logout, isLoading } = useAuth();
   const navigate = useNavigate();
   const handleLogout = async () => {
     try {
@@ -22,35 +22,34 @@ const Header = () => {
     ],
 
     Admin: [
-      { id: 1, name: "Admin Panel", path: "/admindashboard" }
+      { id: 1, name: "Dashboard", path: "/admindashboard" }
     ],
   };
 
   return (
     <>
       <header>
-        <nav>
+        <nav className="flex justify-between items-center p-2 shadow-xl bg-linear-to-br from-gray-100">
           <div>
             <h1>RBAC</h1>
           </div>
-          <div>
-            <NavLink to="/">Home</NavLink>
-
-            {!user &&
+          <div className="flex gap-5">
+            <NavLink className={({isActive})=>isActive?"text-blue-500":"text-black"} to="/">Home</NavLink>
+            {!isLoading && !user &&
               navLinks.public.map((item) => (
-                <NavLink key={item.id} to={item.path}>
+                <NavLink className={({isActive})=>isActive?"text-blue-500":"text-black"} key={item.id} to={item.path}>
                   {item.name}
                 </NavLink>
               ))}
 
-            {user &&
+            {!isLoading && user &&
               navLinks[user?.role]?.map((item) => (
-                <NavLink key={item.id} to={item.path}>
+                <NavLink className={({isActive})=>isActive?"text-blue-500":"text-black"} key={item.id} to={item.path}>
                   {item.name}
                 </NavLink>
               ))}
 
-            {user && <button onClick={handleLogout}>Logout</button>}
+            {!isLoading && user && <button onClick={handleLogout}>Logout</button>}
           </div>
         </nav>
       </header>

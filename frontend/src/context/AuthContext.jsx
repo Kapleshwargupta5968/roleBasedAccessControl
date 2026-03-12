@@ -5,7 +5,8 @@ export const AuthContext = createContext({});
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     const verifyUser = async () => {
       try {
@@ -31,9 +32,7 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  return isLoading && isLoading ? (
-    <div className="flex h-screen items-center justify-center">Loading...</div>
-  ) : (
+  return (
     <AuthContext.Provider value={{ user, setUser, isLoading, logout }}>
       {children}
     </AuthContext.Provider>
